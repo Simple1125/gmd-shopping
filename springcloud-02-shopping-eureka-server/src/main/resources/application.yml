@@ -1,0 +1,13 @@
+server:
+  port: 9000
+  
+eureka:
+  instance:
+    hostname: locahost                       # 设置服务器名称
+  client:
+    register-with-eureka: false              # 设置当前项目不需要注册到EUREKA服务器中
+    fetch-registry: false                    # 不需要检索服务
+    service-url:
+       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      
+    

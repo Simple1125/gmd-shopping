@@ -1,0 +1,35 @@
+server:
+  port: 8003
+  
+spring:
+  datasource:                          # 设置数据源信息
+    type: com.alibaba.druid.pool.DruidDataSource # 设置数据库连接池的类型
+    driver-class-name: org.gjt.mm.mysql.Driver   # 设置数据库驱动
+    url: jdbc:mysql://127.0.0.1:3306/first_demo
+    username: root
+    password:   
+    dbcp2:
+      min-idle: 5                      # 设置最小连接数      
+      initial-size: 5                  # 设置当前数据库连接池启动时,创建的连接数  
+      max-total: 10                    # 设置最大连接数      
+      max-wait-millis: 2000            # 设置最大等待时间
+  application:
+    name: orders-provider
+      
+mybatis:
+  mapper-locations:                    # 设置MyBatis中Mapper.xml文件的位置,SpringBoot中的Mapper.xml文件必须出现在src/main/resource目录下
+  - classpath:mapper/*.xml
+  type-aliases-package: com.springcloud.entity   # 设置Myabatis实体类的位置
+  configuration:                                 # 设置Mbatis开启驼峰命名规则
+    map-underscore-to-camel-case: true  
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl      
+
+pagehelper:                                      # 设置pagehelper分页插件
+  helper-dialect: mysql                          # 设置数据库类型
+  reasonable: true                               # 设置分页合理化参数：当pageNum<=0时，显示第1页。当pageNum>=总页数，显示最后一页
+  support-methods-arguments: true
+  
+eureka:
+  client:
+    service-url: 
+      defaultZone: http://localhost:9000/eureka/
